@@ -7,7 +7,7 @@ Qui troverai tutti i file HTML, CSS, JavaScript e le immagini organizzati in mod
 
 ## 🚀 Visualizza il sito
 
-👉 **[Visita il sito live su GitHub Pages](https://tuo-username.github.io/nome-repo/)**  
+👉 **[Visita il sito live su GitHub Pages](https://github.com/frazane04/TecWeb)**  
 *(Il link funzionerà dopo aver attivato GitHub Pages nelle impostazioni della repository)*
 
 ---
