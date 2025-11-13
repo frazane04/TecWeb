@@ -54,21 +54,30 @@ header {
     vertical-align: middle; /* Allinea l'immagine al centro */
 }
 
+/* Contenitore per il selettore del tema (lente + sole/luna) */
 .theme-switcher {
     position: relative;
-    width: 50px; /* Larghezza del contenitore del selettore */
-    height: 50px; /* Altezza del contenitore del selettore */
+    width: 65px; /* Aumenta la larghezza per una lente più grande */
+    height: 65px; /* Aumenta l'altezza per una lente più grande */
     cursor: pointer;
-    display: flex;
+    display: flex; /* Usa flexbox per centrare facilmente i simboli */
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Nasconde ciò che esce dal contenitore */
 }
 
-.theme-switcher img {
-    position: absolute;
-    width: 100%; /* Le icone luna/sole riempiono il contenitore */
-    height: 100%;
-    transition: opacity 0.3s ease; /* Transizione per la comparsa/scomparsa delle icone */
+/* Stili per le icone luna/sole (SOLO i simboli, senza lente) */
+.theme-switcher .theme-icon {
+    position: absolute; /* Posiziona i simboli luna/sole */
+    width: 80%; /* Aumenta la dimensione dei simboli per riempire meglio la lente più grande */
+    height: 80%;
+    object-fit: contain; /* Assicura che l'immagine sia contenuta senza distorsioni */
+    transition: opacity 0.3s ease; /* Transizione per la comparsa/scomparsa */
+    z-index: 5; /* Assicurati che siano sotto la lente ma sopra lo sfondo */
+    /* Centra perfettamente l'icona all'interno del theme-switcher */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .theme-switcher .hidden {
@@ -76,40 +85,45 @@ header {
     pointer-events: none; /* Impedisce interazione quando nascosto */
 }
 
+/* Stili per la lente d'ingrandimento (SOLO la lente, vuota) */
 .magnifying-glass {
     position: absolute;
     width: 100%; /* La lente riempie il contenitore */
     height: 100%;
-    background-image: url('../img/lente.png'); /* Assicurati di avere un'immagine della sola lente qui */
+    background-image: url('../img/lente.png'); /* Questa è solo la lente vuota */
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    z-index: 10; /* Assicura che la lente sia sopra le icone */
-    transition: transform 0.4s ease-out; /* Transizione per il movimento della lente */
-    /* Crea un'immagine di una lente trasparente senza luna/sole per questo */
+    z-index: 10; /* La lente DEVE essere sopra i simboli luna/sole */
+    transition: transform 0.6s ease-in-out; /* Rendi la transizione della lente più lenta e con easing */
+    /* Assicurati che il centro della lente sia il punto di trasformazione */
+    transform-origin: center center;
 }
 
 /* Animazioni per la lente d'ingrandimento */
 .magnifying-glass.animate-left {
-    animation: moveLeft 0.8s forwards; /* Durata e fill-mode */
+    animation: moveLeftAndUpDown 1.2s forwards; /* Durata aumentata (più lenta) */
 }
 
 .magnifying-glass.animate-right {
-    animation: moveRight 0.8s forwards; /* Durata e fill-mode */
+    animation: moveRightAndUpDown 1.2s forwards; /* Durata aumentata (più lenta) */
 }
 
-@keyframes moveLeft {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(-20px); } /* Sposta un po' a sinistra */
-    60% { transform: translateX(20px); }  /* Poi a destra (passa sul centro) */
-    100% { transform: translateX(0); }    /* Torna al centro */
+/* Keyframes con movimento su e giù */
+@keyframes moveLeftAndUpDown {
+    0% { transform: translate(0, 0); } /* Partenza al centro */
+    25% { transform: translate(-25px, -10px); } /* Sposta a sinistra e leggermente su */
+    50% { transform: translate(25px, 10px); }  /* Sposta a destra e leggermente giù */
+    75% { transform: translate(-10px, -5px); } /* Sposta leggermente a sinistra e su per un rimbalzo */
+    100% { transform: translate(0, 0); }    /* Torna al centro */
 }
 
-@keyframes moveRight {
-    0% { transform: translateX(0); }
-    30% { transform: translateX(20px); }  /* Sposta un po' a destra */
-    60% { transform: translateX(-20px); } /* Poi a sinistra (passa sul centro) */
-    100% { transform: translateX(0); }    /* Torna al centro */
+@keyframes moveRightAndUpDown {
+    0% { transform: translate(0, 0); } /* Partenza al centro */
+    25% { transform: translate(25px, 10px); }  /* Sposta a destra e leggermente giù */
+    50% { transform: translate(-25px, -10px); } /* Sposta a sinistra e leggermente su */
+    75% { transform: translate(10px, 5px); }  /* Sposta leggermente a destra e giù per un rimbalzo */
+    100% { transform: translate(0, 0); }    /* Torna al centro */
 }
 
 
