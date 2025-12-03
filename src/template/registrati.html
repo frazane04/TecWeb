@@ -1,0 +1,96 @@
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Unisciti alla community</h1>
+            <p>Diventa un Detective e inizia le tue indagini.</p>
+        </div>
+
+        <form class="auth-form" method="POST" action="{{PATH_PREFIX}}/registrati">
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    required 
+                    placeholder="detective_007"
+                    autocomplete="username"
+                    minlength="3"
+                    maxlength="30"
+                />
+                <small class="form-hint">Minimo 3 caratteri, massimo 30</small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="detective@example.com"
+                    autocomplete="email"
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    required 
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                    minlength="8"
+                />
+                <small class="form-hint">Almeno 8 caratteri</small>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirm">Conferma Password</label>
+                <input 
+                    type="password" 
+                    id="password_confirm" 
+                    name="password_confirm" 
+                    required 
+                    placeholder="••••••••"
+                    autocomplete="new-password"
+                />
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="terms" id="terms" required />
+                    <span>
+                        Accetto i <a href="{{PATH_PREFIX}}/termini" class="link-secondary">Termini di Servizio</a> 
+                        e la <a href="{{PATH_PREFIX}}/privacy" class="link-secondary">Privacy Policy</a>
+                    </span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-container">
+                    <input type="checkbox" name="newsletter" id="newsletter" />
+                    <span>Desidero ricevere la newsletter con aggiornamenti sui casi</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full-width">
+                Crea Account
+            </button>
+        </form>
+
+        <div class="auth-divider">
+            <span>oppure</span>
+        </div>
+
+        <div class="auth-alternative">
+            <p>Hai già un account?</p>
+            <a href="{{PATH_PREFIX}}/accedi" class="btn btn-outline btn-full-width">
+                Accedi
+            </a>
+        </div>
+    </div>
+</div>
