@@ -1,170 +1,477 @@
-/* --- Stili di Base e Layout --- */
+/*
+================================================================================
+                                ALICE TRUE CRIME STYLE
+================================================================================
+File CSS unificato: include reset, variabili della palette e stili di tutte le sezioni della homepage.
+*/
+
+/* --- 1. Reset e Variabili della Palette --- */
+:root {
+    /* La tua Nuova Palette (HEX) */
+    --primary: #8797AF;       /* Colore Primario (Pulsanti, link, logo) */
+    --primary-hover: #56667A; /* Colore Hover (più scuro del Primary) */
+    --dark-bg: #2C1320;       /* Sfondo Scuro (Footer e CTA finale) */
+    --text-main: #5F4B66;     /* Testo Principale (viola/marrone scuro) */
+    --text-muted: #8797AF;     /* Testo Secondario/Grigio (blu grigio) */
+    --hero-bg: #A7ADC6;        /* Sfondo Chiaro (Hero Section/Carosello) */
+    
+    /* Neutri essenziali per contrasto */
+    --white: #ffffff;         /* Colore Bianco puro */
+    --text-on-dark: #e5e7eb;  /* Testo molto chiaro per sfondi scuri */
+    --border-light: #e5e7eb;  /* Bordo molto chiaro (Header/Newsletter) */
+    --outline-light: #d1d5db; /* Bordo per pulsanti outline */
+    --bg-lightest: #f9fafb;   /* Sfondo leggerissimo (Newsletter, Sezione Detective) */
+    --bg-light-hover: #f3f4f6; /* Hover per elementi chiari */
+}
+
+/* Reset Box Model */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Stile Body e Font Base */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4; 
-    color: #333;
-    margin: 0;
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-main {
-    text-align: center;
-    padding: 40px;
-}
-h1 {
-    color: #0078d7;
-    margin: 0;
-}
-button {
-    background-color: #0078d7;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-button:hover {
-    background-color: #005a9e;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text-main);
+    background-color: var(--white);
+    line-height: 1.5;
 }
 
-/* --- Header --- */
-header {
-    display: flex;
-    justify-content: space-between; /* Spazio tra logo, nav e destra */
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-}
-
-/* Logo (nuovo requisito) */
-.logo-image {
-    height: 200px; /* Altezza fissa */
-    width: auto;
-}
-
-/* Navigazione centrale */
-.main-nav {
-    display: flex;
-    gap: 20px;
-}
-.nav-item {
+/* Link e Headings */
+a {
+    color: var(--primary);
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 5px;
-    transition: color 0.3s ease;
+    transition: color 0.2s;
 }
-.nav-item:hover, .nav-item.active {
-    color: #0078d7;
+a:hover {
+    color: var(--primary-hover);
 }
-
-/* Contenitore destra (Tema + Profilo) */
-.header-right-container {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-.profile-icon img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    vertical-align: middle;
+h1, h2, h3 {
+    color: var(--text-main);
+    line-height: 1.2;
 }
 
-/* --- Selettore Tema e Animazione Lente --- */
-.theme-switcher {
-    position: relative;
-    width: 80px; 
-    height: 80px; 
-    cursor: pointer;
+
+/* --- 2. Layout Strutturale (Sticky Footer) --- */
+.site-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    flex-direction: column;
+    min-height: 100vh;
 }
-.theme-switcher:hover {
-    transform: scale(1.1);
-    background-color: rgba(0, 0, 0, 0.05);
-}
-body.dark-theme .theme-switcher:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-.theme-icon-container {
-    position: absolute;
+
+#main-content {
+    flex: 1;
     width: 100%;
-    height: 100%;
+}
+
+.sezione-stretta {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.text-center { text-align: center; }
+
+/* --- 3. Componenti Riutilizzabili (Pulsanti) --- */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary); /* Bordo con colore primario */
+    color: var(--primary); /* Testo con colore primario */
+}
+.btn-outline:hover { 
+    background-color: var(--primary); 
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.btn-xl {
+    padding: 1rem 3.5rem; /* Pulsante CTA grande */
+    font-size: 1.1rem;
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+
+/* --- 4. Header e Navigazione --- */
+.main-header {
+    background: var(--white);
+    /* Ombra sottile per staccare dallo sfondo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-area img { height: 40px; } /* Adatta la dimensione del logo */
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.main-nav a {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.main-nav a:hover, .activePage a {
+    color: var(--primary);
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+
+/* --- 5. Nuove Sezioni della Homepage --- */
+
+/* 5.1 Carosello Casi in Evidenza */
+#carousel-casi {
+    padding: 4rem 0; /* Padding orizzontale tolto qui */
+    background-color: var(--hero-bg); 
+}
+
+#carousel-casi h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.scrolling-container {
+    display: flex;
+    overflow-x: scroll; /* Abilita lo scorrimento orizzontale */
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    /* Aggiunge padding per l'inizio/fine visibile */
+    padding-left: 2rem;
+    padding-right: 2rem; 
+}
+.scrolling-container::-webkit-scrollbar { display: none; } /* Nasconde la scrollbar su Chrome/Safari */
+.scrolling-container { -ms-overflow-style: none; scrollbar-width: none; } /* Nasconde scrollbar su IE/Firefox */
+
+
+.carousel-card {
+    flex: 0 0 280px; /* Larghezza fissa per carosello */
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+}
+.carousel-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+.carousel-card h3 { font-size: 1.2rem; }
+.carousel-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+/* 5.2 Sezioni in Griglia (Investigazioni e Articoli) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 per investigazioni, 1/3 per sidebar */
+    gap: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.investigazioni-recenti h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.investigazione-card {
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.3s ease;
+}
+.investigazione-card:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+.investigazione-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.investigazione-card .data-caso { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.investigazione-card p { margin-bottom: 1rem; }
+.investigazione-card .btn { float: right; } /* Allinea il bottone a destra */
+
+
+.articoli-popolari {
+    background-color: var(--bg-lightest);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--outline-light);
+}
+
+.articoli-popolari h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+.articoli-popolari ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.articoli-popolari li {
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed var(--outline-light);
+}
+
+/* 5.3 Sezione Detective (Volti in Cerchio) */
+#i-detective {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: var(--bg-lightest);
+}
+
+#i-detective h2 {
+    font-size: 2.2rem;
+    margin-bottom: 3rem;
+}
+
+.detective-container {
     display: flex;
     justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.detective-card {
+    text-align: center;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+.detective-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Rende l'immagine un cerchio */
+    object-fit: cover;
+    border: 4px solid var(--primary); /* Bordo di colore primario */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detective-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px var(--primary-hover);
+}
+
+.detective-card p {
+    margin-top: 0.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+
+/* 5.4 CTA Finale "Diventa un Detective" */
+.cta-area {
+    background-color: var(--dark-bg);
+    color: var(--text-on-dark);
+    padding: 6rem 2rem;
+}
+
+.cta-area h2 {
+    font-size: 2.8rem;
+    color: var(--text-on-dark);
+    margin-bottom: 1rem;
+}
+
+.cta-area p {
+    font-size: 1.3rem;
+    color: var(--text-on-dark);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+
+/* --- 6. Newsletter Style --- */
+.newsletter-section {
+    background-color: var(--bg-lightest);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+}
+
+.newsletter-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 15px; 
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.newsletter-form input {
+    padding: 0.9rem 1.2rem;
+    border: 2px solid var(--primary); /* Bordo primario più spesso */
+    border-radius: 8px;
+    width: 60%;
+    outline: none; 
+    transition: border-color 0.3s;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--primary-hover); 
+    /* Ombra esterna leggera (utilizza colore primario in RGBA) */
+    box-shadow: 0 0 0 3px rgba(135, 151, 175, 0.3); 
+}
+
+.sr-only { /* Accessibilità */
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); border: 0;
+}
+
+
+/* --- 7. Footer --- */
+.site-footer {
+    background-color: var(--dark-bg);
+    color: var(--text-on-dark);
+    padding: 4rem 2rem 1.5rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 6rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
     align-items: center;
-    z-index: 1;
-    transition: opacity 0.3s ease;
-}
-.theme-icon-container img {
-    width: 60%; 
-    height: 60%; 
-    object-fit: contain;
-}
-.theme-icon-container.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-.magnifying-glass {
-    position: absolute;
-    width: 100%; 
-    height: 100%; 
-    background-image: url('../assets/img/lente.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 10;
-    transform-origin: center center;
-    transform: translate(5px, 5px); /* Spostamento base */
 }
 
-/* Animazione Semplice (Sinistra e Ritorno) */
-.magnifying-glass.animate-sweep {
-    animation: sweepLeft 1.0s forwards ease-in-out;
+.footer-column h3 {
+    color: var(--text-muted); /* Colore Secondario per i titoli */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
 }
 
-@keyframes sweepLeft {
-    0% {
-        transform: translate(5px, 5px);
+.footer-column ul { list-style: none; }
+.footer-column li { margin-bottom: 0.8rem; }
+.footer-column a {
+    color: var(--text-on-dark);
+    text-decoration: none;
+}
+.footer-column a:hover { color: var(--white); }
+
+.footer-logo-area {
+    display: flex;
+    justify-content: flex-end;
+}
+.footer-logo-area img {
+    max-width: 180px;
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    transition: transform 0.3s ease;
+}
+.footer-logo-area img:hover { transform: scale(1.05); }
+
+.footer-bottom {
+    /* Bordo tra contenuto e copyright */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    padding-top: 1.5rem;
+    text-align: center;
+    color: var(--text-on-dark);
+    opacity: 0.6;
+    font-size: 0.85rem;
+}
+
+
+/* --- 8. Media Queries (Mobile) --- */
+@media (max-width: 900px) {
+    /* Sezioni Griglia Impilate */
+    .content-grid {
+        grid-template-columns: 1fr; 
+        gap: 2.5rem;
     }
-    50% {
-        transform: translate(-30px, 5px); 
-    }
-    100% {
-        transform: translate(5px, 5px);
+    .scrolling-container {
+        padding-inline: 1rem;
     }
 }
 
-/* --- Stili Tema Scuro --- */
-body.dark-theme {
-    background-color: #333;
-    color: #f4f4f4;
-}
-body.dark-theme h1 {
-    color: #a0c2e6;
-}
-body.dark-theme header {
-    background-color: #222;
-    box-shadow: 0 2px 4px rgba(255,255,255,0.1);
-}
-body.dark-theme .nav-item {
-    color: #f4f4f4;
-}
-body.dark-theme .nav-item:hover, body.dark-theme .nav-item.active {
-    color: #a0c2e6;
-}
-body.dark-theme button {
-    background-color: #a0c2e6;
-    color: #222;
-}
-body.dark-theme button:hover {
-    background-color: #8bb1d8;
+@media (max-width: 768px) {
+    /* Header e Hero */
+    .main-nav { display: none; } /* Nasconde la nav bar */
+    .header-container { padding: 1rem; }
+
+    .hero-container { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .hero-buttons { justify-content: center; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text p { font-size: 1rem; }
+    .hero-section { padding: 3rem 0; }
+    
+    .cta-area h2 { font-size: 2rem; }
+
+    /* Footer */
+    .footer-content { 
+        flex-direction: column; 
+        gap: 2rem;
+        text-align: center;
+    }
+    .footer-logo-area {
+        justify-content: center;
+    }
 }

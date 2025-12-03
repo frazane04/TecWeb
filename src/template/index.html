@@ -1,63 +1,59 @@
-<!DOCTYPE html>
-<html lang="it">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alice True Crime - Il Lato Oscuro della Realtà</title>
-    <link rel="stylesheet" href="../../css/mainStyle.css">
-</head>
-
-<body>
-
-    <header>
-        <div class="logo-container">
-            <img src="../../assets/img/logo.png" alt="Logo Alice True Crime" class="logo-image">
+<section id="carousel-casi" class="sezione-stretta">
+    <h2>Casi in Evidenza</h2>
+    
+    <div class="scrolling-container">
+        <div class="carousel-card">
+            <img src="{{PATH_PREFIX}}/assets/imgs/copertina-placeholder.jpg" alt="Copertina Caso" />
+            <h3>Il Mistero di...</h3>
+            <p>Luogo e data.</p>
         </div>
-
-        <nav class="main-nav">
-            <a href="#" class="nav-item active">HOME</a>
-            <a href="#" class="nav-item">ESPLORA</a>
-            <a href="#" class="nav-item">GIOCO</a>
-            <a href="#" class="nav-item">CONTATTACI</a>
-        </nav>
-
-        <div class="header-right-container">
-
-            <div class="theme-switcher" title="Cambia tema">
-                <div id="theme-icon-luna-container" class="theme-icon-container">
-                    <img src="../../assets/img/luna.png" alt="Tema Scuro">
-                </div>
-                <div id="theme-icon-sole-container" class="theme-icon-container hidden">
-                    <img src="../../assets/img/sole.png" alt="Tema Chiaro">
-                </div>
-                <div class="magnifying-glass"></div>
-            </div>
-
-            <div class="profile-icon">
-                <img src="img/profile_placeholder.png" alt="Profilo">
-            </div>
-
         </div>
-    </header>
+</section>
 
-    <main>
-        <h1>Benvenuto in ALICE TRUE CRIME</h1>
-        <p>Scopri il lato oscuro della realtà e naviga tra le ultime inchieste.</p>
+<section id="sezioni-principali" class="content-grid sezione-stretta">
+    
+    <div class="investigazioni-recenti">
+        <h2>Ultime Inchieste</h2>
+        
+        <div class="investigazione-card">
+            <h3>Titolo del Caso Recente</h3>
+            <p class="data-caso">27/11/2025</p>
+            <p>Breve sinossi del caso più recente...</p>
+            <a href="{{PATH_PREFIX}}/caso/recente" class="btn btn-primary btn-small">Leggi l'Inchiesta</a>
+        </div>
+        </div>
+    
+    <aside class="articoli-popolari">
+        <h3>Articoli più Letti</h3>
+        <ul>
+            <li><a href="#">L'Analisi Forense sul DNA</a></li>
+            <li><a href="#">I 5 Miti da Sfata sul True Crime</a></li>
+            <li><a href="#">Il Caso Scomparso del 1988</a></li>
+            </ul>
+        <a href="{{PATH_PREFIX}}/esplora" class="btn btn-primary btn-full-width">Esplora Tutti i Casi</a>
+    </aside>
 
-        <section class="content-section">
-            <h2>Articoli più letti</h2>
-            <p>Qui andranno le card degli articoli.</p>
-        </section>
+</section>
 
-        <button id="myButton">Vai al Gioco</button>
-    </main>
+<section id="i-detective" class="sezione-stretta text-center">
+    <h2>I Detective di AliceTrueCrime</h2>
+    <div class="detective-container">
+        
+        <div class="detective-card">
+            <img src="{{PATH_PREFIX}}/assets/imgs/detective1.jpg" alt="Foto Detective A" class="detective-photo" />
+            <p>Nome Detective A</p>
+        </div>
+        <div class="detective-card">
+            <img src="{{PATH_PREFIX}}/assets/imgs/detective2.jpg" alt="Foto Detective B" class="detective-photo" />
+            <p>Nome Detective B</p>
+        </div>
+        </div>
+</section>
 
-    <footer>
-        <p>&copy; 2025 - Alice True Crime</p>
-    </footer>
-
-    <script src="../../js/main.js"></script>
-</body>
-
-</html>
+<section id="cta-detective" class="cta-area">
+    <div class="cta-content sezione-stretta text-center">
+        <h2>Diventa anche tu un Detective</h2>
+        <p>Metti alla prova le tue abilità investigative e aiuta a risolvere i casi.</p>
+        <a href="{{PATH_PREFIX}}/pagina-gioco" class="btn btn-primary btn-xl">Inizia la tua Indagine</a>
+    </div>
+</section>
